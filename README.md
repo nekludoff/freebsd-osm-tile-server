@@ -8,7 +8,7 @@ You will need a fresh FreeBsd 13.2 installation with ZFS file system. I recommen
 
 pkg upgrade -y <br>
 portsnap auto <br>
-pkg install -y git sudo wget <br>
+pkg install -y git sudo wget nano<br>
 cd /root <br>
 git clone https://github.com/nekludoff/freebsd-osm-tile-server.git <br>
 
