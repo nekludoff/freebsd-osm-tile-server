@@ -91,6 +91,8 @@ sudo -u _renderd scripts/get-external-data.py
 
 cd /home/_renderd/src/openstreetmap-carto/
 scripts/get-fonts.sh
+mkdir /usr/share/fonts
+cp -r /home/_renderd/src/openstreetmap-carto/fonts/* /usr/share/fonts
 
 cd /root
 git clone --recursive  https://github.com/openstreetmap/mod_tile.git
