@@ -75,11 +75,11 @@ carto -v
 carto project.mml > mapnik.xml
 mkdir /home/_renderd/data
 cd /home/_renderd/data
-wget https://download.geofabrik.de/asia/azerbaijan-latest.osm.pbf
+wget http://download.geofabrik.de/russia/central-fed-district-latest.osm.pbf
 chmod o+rx /home/_renderd
 chown -R _renderd:_renderd /home/_renderd
 
-sudo -u _renderd osm2pgsql -d gis --create --slim  -G --hstore --tag-transform-script /home/_renderd/src/openstreetmap-carto/openstreetmap-carto.lua -C 2500 --number-processes 4 -S /home/_renderd/src/openstreetmap-carto/openstreetmap-carto.style /home/_renderd/data/azerbaijan-latest.osm.pbf
+sudo -u _renderd osm2pgsql -d gis --create --slim  -G --hstore --tag-transform-script /home/_renderd/src/openstreetmap-carto/openstreetmap-carto.lua -C 2500 --number-processes 4 -S /home/_renderd/src/openstreetmap-carto/openstreetmap-carto.style /home/_renderd/data/central-fed-district-latest.osm.pbf
 
 cd /home/_renderd/src/openstreetmap-carto/
 sudo -u _renderd psql -d gis -f indexes.sql
