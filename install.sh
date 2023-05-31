@@ -51,8 +51,8 @@ cp -f pg_hba.conf /pgdb/data/15/pg_hba.conf
 cp -f postgresql.conf /pgdb/data/15/postgresql.conf
 service postgresql start
 
-psql -U postgres -c "createuser _renderd"
-psql -U postgres -c "createdb -E UTF8 -O _renderd gis"
+su - postgres -c "createuser _renderd"
+su - postgres -c "createdb -E UTF8 -O _renderd gis"
 psql -U postgres -d gis -c "CREATE EXTENSION postgis;"
 psql -U postgres -d gis -c "CREATE EXTENSION hstore;"
 psql -U postgres -d gis -c "ALTER TABLE geometry_columns OWNER TO _renderd;"
