@@ -51,10 +51,8 @@ cp -f pg_hba.conf /pgdb/data/15/pg_hba.conf
 cp -f postgresql.conf /pgdb/data/15/postgresql.conf
 service postgresql start
 
-sudo -u postgres -i << EOF
-createuser _renderd
-createdb -E UTF8 -O _renderd gis
-EOF
+psql -U postgres -c "createuser _renderd"
+psql -U postgres -c "createdb -E UTF8 -O _renderd gis"
 psql -U postgres -d gis -c "CREATE EXTENSION postgis;"
 psql -U postgres -d gis -c "CREATE EXTENSION hstore;"
 psql -U postgres -d gis -c "ALTER TABLE geometry_columns OWNER TO _renderd;"
@@ -152,5 +150,7 @@ chmod 755 /usr/local/etc/rc.d/renderd
 cp -f /root/freebsd-osm-tile-server/conf/renderd/renderd.conf /usr/local/etc/renderd/renderd.conf
 chown -R _renderd:_renderd /usr/local/etc/renderd
 
+service renderd start
+service apache24 start
 service renderd restart
 service apache24 restart
