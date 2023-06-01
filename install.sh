@@ -1,6 +1,9 @@
 #!/bin/sh
 cd /
 
+echo "DEFAULT_VERSIONS+=llvm=15" >> /etc/make.conf
+echo "DEFAULT_VERSIONS+=openssl" >> /etc/make.conf
+
 zfs destroy -r zroot/pgdb
 zfs create -o mountpoint=/pgdb zroot/pgdb
 zfs create -o mountpoint=/pgdb/data zroot/pgdb/data
