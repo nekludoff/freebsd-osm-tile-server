@@ -54,7 +54,7 @@ sysrc postgresql_enable="YES"
 cp -f postgresql /usr/local/etc/rc.d/postgresql
 chmod 755 /usr/local/etc/rc.d/postgresql
 /usr/local/etc/rc.d/postgresql initdb
-mv -f /pgdb/data/16pg_wal /pgdb/wal/16
+mv -f /pgdb/data/16/pg_wal /pgdb/wal/16
 ln -s /pgdb/wal/16/pg_wal /pgdb/data/16/pg_wal
 cp -f pg_hba.conf /pgdb/data/16/pg_hba.conf
 cp -f postgresql.conf /pgdb/data/16/postgresql.conf
