@@ -1,8 +1,13 @@
 #!/bin/sh
 cd /
 
+echo "CPUTYPE?=native" >> /etc/make.conf
+echo "CFLAGS+=-O3 -funroll-loops -flto -march=native -pipe -s -DNDEBUG" >> /etc/make.conf
+echo "CXXFLAGS+=-O3 -funroll-loops -flto -march=native -pipe -s -DNDEBUG" >> /etc/make.conf
+echo "COPTFLAGS+=-O3 -funroll-loops -flto -march=native -pipe -s -DNDEBUG" >> /etc/make.conf
+
 echo "DEFAULT_VERSIONS+=llvm=15" >> /etc/make.conf
-echo "DEFAULT_VERSIONS+=php=8.3" >> /etc/make.conf
+echo "DEFAULT_VERSIONS+=php=8.1" >> /etc/make.conf
 echo "DEFAULT_VERSIONS+=ssl=openssl" >> /etc/make.conf
 
 zfs destroy -r zroot/pgdb
