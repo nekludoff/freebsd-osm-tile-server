@@ -2,17 +2,18 @@
 cd /
 
 echo "DEFAULT_VERSIONS+=llvm=15" >> /etc/make.conf
+echo "DEFAULT_VERSIONS+=php=8.3" >> /etc/make.conf
 echo "DEFAULT_VERSIONS+=ssl=openssl" >> /etc/make.conf
 
 zfs destroy -r zroot/pgdb
 zfs create -o mountpoint=/pgdb zroot/pgdb
 zfs create -o mountpoint=/pgdb/data zroot/pgdb/data
 cd /pgdb/data
-mkdir 15
+mkdir 16
 zfs set recordsize=32k zroot/pgdb/data
 zfs create -o mountpoint=/pgdb/wal zroot/pgdb/wal
 cd /pgdb/wal
-mkdir 15
+mkdir 16
 zfs set recordsize=64k zroot/pgdb/wal
 zfs set compression=lz4 zroot/pgdb
 zfs set atime=off zroot/pgdb
@@ -29,18 +30,18 @@ ln -s /usr/local/bin/python3.9 /usr/local/bin/python3
 
 cd /root
 git clone https://github.com/nekludoff/freebsd-osm-tile-server.git
-cd freebsd-osm-tile-server/Postgresql-15
+cd freebsd-osm-tile-server/Postgresql-16
 
-pkg install -y postgresql15-client-15.4.pkg
+pkg install -y postgresql16-client-16.0.pkg
 pkg install -y py39-psycopg-c-3.1.10.pkg
 pkg install -y py39-psycopg-3.1.10.pkg
 pkg install -y py39-psycopg2-2.9.7.pkg
 pkg install -y py39-psycopg2cffi-2.9.0.pkg
-pkg install -y postgresql15-contrib-15.4.pkg
+pkg install -y postgresql16-contrib-16.0.pkg
 pkg install -y sfcgal-1.4.1_4.pkg
-pkg install -y gdal-3.7.1.pkg
-pkg install -y osm2pgsql-1.9.1.pkg
-pkg install -y postgresql15-server-15.4.pkg
+pkg install -y gdal-3.7.2.pkg
+pkg install -y osm2pgsql-1.9.2.pkg
+pkg install -y postgresql16-server-16.0.pkg
 pkg install -y postgis33-3.3.4.pkg
 chown -R postgres:postgres /pgdb
 
@@ -48,10 +49,10 @@ sysrc postgresql_enable="YES"
 cp -f postgresql /usr/local/etc/rc.d/postgresql
 chmod 755 /usr/local/etc/rc.d/postgresql
 /usr/local/etc/rc.d/postgresql initdb
-mv -f /pgdb/data/15/pg_wal /pgdb/wal/15
-ln -s /pgdb/wal/15/pg_wal /pgdb/data/15/pg_wal
-cp -f pg_hba.conf /pgdb/data/15/pg_hba.conf
-cp -f postgresql.conf /pgdb/data/15/postgresql.conf
+mv -f /pgdb/data/16pg_wal /pgdb/wal/16
+ln -s /pgdb/wal/16/pg_wal /pgdb/data/16/pg_wal
+cp -f pg_hba.conf /pgdb/data/16/pg_hba.conf
+cp -f postgresql.conf /pgdb/data/16/postgresql.conf
 service postgresql start
 
 su - postgres -c "createuser _renderd"
