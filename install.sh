@@ -159,6 +159,8 @@ chmod 755 /usr/local/etc/rc.d/renderd
 cp -f /root/freebsd-osm-tile-server/conf/renderd/renderd.conf /usr/local/etc/renderd/renderd.conf
 chown -R _renderd:_renderd /usr/local/etc/renderd
 
+touch /mod_tile/planet-import-complete
+
 service renderd start
 service apache24 start
 service renderd restart
