@@ -47,7 +47,7 @@ pkg install -y sfcgal-1.4.1_5.pkg
 pkg install -y gdal-3.7.2_2.pkg
 pkg install -y osm2pgsql-1.9.2_1.pkg
 pkg install -y postgresql16-server-16.0.pkg
-pkg install -y postgis33-3.4.0.pkg
+pkg install -y postgis34-3.4.0.pkg
 chown -R postgres:postgres /pgdb
 
 sysrc postgresql_enable="YES"
