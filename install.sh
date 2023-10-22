@@ -28,7 +28,9 @@ zfs set redundant_metadata=most zroot/pgdb
 
 pkg install -y git sudo wget npm nano
 pkg install -y llvm15 lua54 openssl30
-pkg install -y mc nano bash apache24 boost-all cairo ceph14 cmake coreutils curl freetype2 glib gmake harfbuzz icu iniparser libjpeg-turbo libmemcached png proj python39 sqlite3 tiff webp zlib-ng bzip
+pkg install -y mc nano bash apache24 boost-all cairo 
+pkg install -y cmake coreutils curl freetype2 glib gmake harfbuzz icu iniparser libjpeg-turbo libmemcached png proj python39 sqlite3 tiff webp zlib-ng bzip
+#pkg install -y ceph14 
 pkg install -y png tiff proj icu freetype2 cairomm pkgconf libtool libltdl
 ln -s /usr/local/bin/python3.9 /usr/local/bin/python
 ln -s /usr/local/bin/python3.9 /usr/local/bin/python3
@@ -40,7 +42,7 @@ cd freebsd-osm-tile-server/Postgresql-16
 pkg install -y postgresql16-client-16.0.pkg
 pkg install -y py39-psycopg-c-3.1.12.pkg
 pkg install -y py39-psycopg-3.1.12.pkg
-pkg install -y py39-psycopg2-2.9.7.pkg
+pkg install -y py39-psycopg2-2.9.9.pkg
 pkg install -y py39-psycopg2cffi-2.9.0.pkg
 pkg install -y postgresql16-contrib-16.0.pkg
 pkg install -y sfcgal-1.4.1_5.pkg
