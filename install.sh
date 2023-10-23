@@ -30,7 +30,6 @@ pkg install -y git sudo wget npm nano
 pkg install -y llvm15 lua54 openssl30
 pkg install -y mc nano bash apache24 boost-all cairo 
 pkg install -y cmake coreutils curl freetype2 glib gmake harfbuzz icu iniparser libjpeg-turbo libmemcached png proj python39 sqlite3 tiff webp zlib-ng bzip
-#pkg install -y ceph14 
 pkg install -y png tiff proj icu freetype2 cairomm pkgconf libtool libltdl
 ln -s /usr/local/bin/python3.9 /usr/local/bin/python
 ln -s /usr/local/bin/python3.9 /usr/local/bin/python3
@@ -51,6 +50,9 @@ pkg install -y osm2pgsql-1.9.2_1.pkg
 pkg install -y postgresql16-server-16.0.pkg
 pkg install -y postgis34-3.4.0.pkg
 chown -R postgres:postgres /pgdb
+
+pkg install -y py39-yaml 
+pkg install -y py39-requests
 
 sysrc postgresql_enable="YES"
 cp -f postgresql /usr/local/etc/rc.d/postgresql
@@ -113,9 +115,11 @@ curl --location --silent https://github.com/mapnik/mapnik/releases/download/v3.1
 curl --location --silent https://github.com/mapnik/mapnik/commit/8944e81367d2b3b91a41e24116e1813c01491e5d.patch | patch -F3 -Np1
 curl --location --silent https://github.com/mapnik/mapnik/commit/83779b7b6bdd229740b1b5e12a4a8fe27114cb7d.patch | patch -F3 -Np1
 curl --location --silent https://github.com/mapnik/mapnik/commit/7f0daee8b37d8cf6eff32529b1762ffd5104f3f3.patch | patch -F3 -Np1
+curl --location --silent https://gitlab.archlinux.org/archlinux/packaging/packages/mapnik/-/raw/f9f723222c0af50e4db747e7c4e8138dbc769f53/boost-1.83.patch | patch -F3 -Np1
 
-setenv JOBS 4
-setenv PYTHON python3.9
+export JOBS=4
+export PYTHON=python3.9
+
 sh configure \
             CPP_TESTS=False \
             DEMO=False \
