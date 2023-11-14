@@ -48,7 +48,7 @@ pkg install -y sfcgal-1.5.0.pkg
 pkg install -y gdal-3.7.2_3.pkg
 pkg install -y osm2pgsql-1.10.0.pkg
 pkg install -y postgresql16-server-16.1.pkg
-pkg install -y postgis34-3.4.0.pkg
+pkg install -y postgis34-3.4.0_2.pkg
 chown -R postgres:postgres /pgdb
 
 pkg install -y py39-yaml 
