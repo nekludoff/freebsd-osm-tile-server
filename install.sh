@@ -19,18 +19,19 @@ zfs set recordsize=32k zroot/pgdb/data
 zfs create -o mountpoint=/pgdb/wal zroot/pgdb/wal
 cd /pgdb/wal
 mkdir 16
-zfs set recordsize=64k zroot/pgdb/wal
 zfs set compression=lz4 zroot/pgdb
 zfs set atime=off zroot/pgdb
 zfs set xattr=sa zroot/pgdb
 zfs set logbias=latency zroot/pgdb
 zfs set redundant_metadata=most zroot/pgdb
+zfs set recordsize=64k zroot/pgdb/wal
+zfs set compression=off zroot/pgdb/wal
 
 pkg install -y git sudo wget npm nano
-pkg install -y llvm15 lua54 openssl30
+pkg install -y llvm16 lua54 openssl30
 pkg install -y mc nano bash apache24 boost-all cairo 
 pkg install -y cmake coreutils curl freetype2 glib gmake harfbuzz icu iniparser libjpeg-turbo libmemcached png proj python39 sqlite3 tiff webp zlib-ng bzip
-pkg install -y png tiff proj icu freetype2 cairomm pkgconf libtool libltdl
+pkg install -y png tiff proj freetype2 cairomm pkgconf libtool libltdl
 ln -s /usr/local/bin/python3.9 /usr/local/bin/python
 ln -s /usr/local/bin/python3.9 /usr/local/bin/python3
 
@@ -39,16 +40,16 @@ git clone https://github.com/nekludoff/freebsd-osm-tile-server.git
 cd freebsd-osm-tile-server/Postgresql-16
 
 pkg install -y postgresql16-client-16.1.pkg
-pkg install -y py39-psycopg-c-3.1.12.pkg
-pkg install -y py39-psycopg-3.1.12.pkg
+pkg install -y py39-psycopg-c-3.1.14.pkg
+pkg install -y py39-psycopg-3.1.14.pkg
 pkg install -y py39-psycopg2-2.9.9.pkg
 pkg install -y py39-psycopg2cffi-2.9.0.pkg
 pkg install -y postgresql16-contrib-16.1.pkg
 pkg install -y sfcgal-1.5.0.pkg
-pkg install -y gdal-3.7.2_3.pkg
+pkg install -y gdal-3.8.1.pkg
 pkg install -y osm2pgsql-1.10.0.pkg
-pkg install -y postgresql16-server-16.1.pkg
-pkg install -y postgis34-3.4.0_2.pkg
+pkg install -y postgresql16-server-16.1_1.pkg
+pkg install -y postgis34-3.4.1.pkg
 chown -R postgres:postgres /pgdb
 
 pkg install -y py39-yaml 
