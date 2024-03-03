@@ -118,6 +118,8 @@ curl --location --silent https://github.com/mapnik/mapnik/commit/83779b7b6bdd229
 curl --location --silent https://github.com/mapnik/mapnik/commit/7f0daee8b37d8cf6eff32529b1762ffd5104f3f3.patch | patch -F3 -Np1
 curl --location --silent https://gitlab.archlinux.org/archlinux/packaging/packages/mapnik/-/raw/f9f723222c0af50e4db747e7c4e8138dbc769f53/boost-1.83.patch | patch -F3 -Np1
 
+pkg install -y cmake gmake
+
 export JOBS=4
 export PYTHON=python3.9
 
