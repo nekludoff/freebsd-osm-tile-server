@@ -30,7 +30,8 @@ zfs set compression=off zroot/pgdb/wal
 pkg install -y git sudo wget npm nano
 pkg install -y llvm16 lua54 openssl30
 pkg install -y mc nano bash apache24 boost-all cairo 
-pkg install -y cmake coreutils curl freetype2 glib gmake harfbuzz icu iniparser libjpeg-turbo libmemcached png proj python39 sqlite3 tiff webp zlib-ng bzip
+pkg install -y cmake coreutils curl freetype2 glib gmake harfbuzz icu iniparser 
+pkg install -y libjpeg-turbo libmemcached png proj python39 sqlite3 tiff webp zlib-ng bzip2
 pkg install -y png tiff proj freetype2 cairomm pkgconf libtool libltdl
 ln -s /usr/local/bin/python3.9 /usr/local/bin/python
 ln -s /usr/local/bin/python3.9 /usr/local/bin/python3
@@ -117,8 +118,6 @@ curl --location --silent https://github.com/mapnik/mapnik/commit/8944e81367d2b3b
 curl --location --silent https://github.com/mapnik/mapnik/commit/83779b7b6bdd229740b1b5e12a4a8fe27114cb7d.patch | patch -F3 -Np1
 curl --location --silent https://github.com/mapnik/mapnik/commit/7f0daee8b37d8cf6eff32529b1762ffd5104f3f3.patch | patch -F3 -Np1
 curl --location --silent https://gitlab.archlinux.org/archlinux/packaging/packages/mapnik/-/raw/f9f723222c0af50e4db747e7c4e8138dbc769f53/boost-1.83.patch | patch -F3 -Np1
-
-pkg install -y cmake gmake
 
 export JOBS=4
 export PYTHON=python3.9
