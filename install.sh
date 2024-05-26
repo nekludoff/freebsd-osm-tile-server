@@ -101,6 +101,7 @@ sudo -u _renderd psql -d gis -f indexes.sql
 cd /home/_renderd/src/openstreetmap-carto/
 mkdir data
 sudo chown _renderd data
+psql -U postgres -d gis -c "ALTER USER _renderd WITH SUPERUSER";
 sudo -u _renderd scripts/get-external-data.py
 
 cd /home/_renderd/src/openstreetmap-carto/
