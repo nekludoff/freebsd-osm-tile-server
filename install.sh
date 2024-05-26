@@ -45,7 +45,7 @@ pkg install -y py39-psycopg-c-3.1.19.pkg
 pkg install -y py39-psycopg-3.1.19.pkg
 pkg install -y py39-psycopg2-2.9.9_1.pkg
 pkg install -y py39-psycopg2cffi-2.9.0.pkg
-pkg install -y postgresql16-contrib-16.4.pkg
+pkg install -y postgresql16-contrib-16.3.pkg
 pkg install -y sfcgal-1.5.1_1.pkg
 pkg install -y gdal-3.9.0.pkg
 pkg install -y osm2pgsql-1.10.0_1.pkg
