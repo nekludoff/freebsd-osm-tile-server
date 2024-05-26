@@ -67,6 +67,7 @@ cp -f postgresql.conf /pgdb/data/16/postgresql.conf
 service postgresql start
 
 su - postgres -c "createuser _renderd"
+psql -U postgres -d gis -c "ALTER USER _renderd WITH SUPERUSER";
 su - postgres -c "createdb -E UTF8 -O _renderd gis"
 psql -U postgres -d gis -c "CREATE EXTENSION postgis;"
 psql -U postgres -d gis -c "CREATE EXTENSION hstore;"
