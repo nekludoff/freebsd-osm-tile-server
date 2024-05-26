@@ -6,7 +6,7 @@ echo "CFLAGS+=-O3 -funroll-loops -flto -march=native -pipe -s -DNDEBUG" >> /etc/
 echo "CXXFLAGS+=-O3 -funroll-loops -flto -march=native -pipe -s -DNDEBUG" >> /etc/make.conf
 echo "COPTFLAGS+=-O3 -funroll-loops -flto -march=native -pipe -s -DNDEBUG" >> /etc/make.conf
 
-echo "DEFAULT_VERSIONS+=llvm=15" >> /etc/make.conf
+echo "DEFAULT_VERSIONS+=llvm=16" >> /etc/make.conf
 echo "DEFAULT_VERSIONS+=php=8.1" >> /etc/make.conf
 echo "DEFAULT_VERSIONS+=ssl=openssl" >> /etc/make.conf
 
@@ -48,7 +48,7 @@ pkg install -y py39-psycopg2cffi-2.9.0.pkg
 pkg install -y postgresql16-contrib-16.3.pkg
 pkg install -y sfcgal-1.5.1_1.pkg
 pkg install -y gdal-3.9.0.pkg
-pkg install -y osm2pgsql-1.10.0_1.pkg
+pkg install -y osm2pgsql-1.11.0_1.pkg
 pkg install -y postgresql16-server-16.3.pkg
 pkg install -y postgis34-3.4.2_3.pkg
 chown -R postgres:postgres /pgdb
