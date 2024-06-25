@@ -28,33 +28,34 @@ zfs set recordsize=64k zroot/pgdb/wal
 zfs set compression=off zroot/pgdb/wal
 
 pkg install -y git sudo wget npm nano
-pkg install -y llvm16 lua54 openssl30
+pkg install -y llvm16 lua54 openssl
 pkg install -y mc nano bash apache24 boost-all cairo 
 pkg install -y cmake coreutils curl freetype2 glib gmake harfbuzz icu iniparser 
-pkg install -y libjpeg-turbo libmemcached png proj python39 sqlite3 tiff webp zlib-ng bzip2
-pkg install -y png tiff proj freetype2 cairomm pkgconf libtool libltdl
-ln -s /usr/local/bin/python3.9 /usr/local/bin/python
-ln -s /usr/local/bin/python3.9 /usr/local/bin/python3
+pkg install -y libjpeg-turbo libmemcached python311 sqlite3 tiff webp zlib-ng bzip2
+pkg install -y png tiff jpeg proj cairomm pkgconf libtool libltdl
+pkg install -y py39-boost-libs py39-cairo
+ln -s /usr/local/bin/python3.11 /usr/local/bin/python
+ln -s /usr/local/bin/python3.11 /usr/local/bin/python3
 
 cd /root
 git clone https://github.com/nekludoff/freebsd-osm-tile-server.git
 cd freebsd-osm-tile-server/Postgresql-16
 
 pkg install -y postgresql16-client-16.3.pkg
-pkg install -y py39-psycopg-c-3.1.19.pkg
-pkg install -y py39-psycopg-3.1.19.pkg
-pkg install -y py39-psycopg2-2.9.9_1.pkg
-pkg install -y py39-psycopg2cffi-2.9.0.pkg
+pkg install -y py311-psycopg-c-3.1.19.pkg
+pkg install -y py311-psycopg-3.1.19.pkg
+pkg install -y py311-psycopg2-2.9.9_1.pkg
+pkg install -y py311-psycopg2cffi-2.9.0.pkg
 pkg install -y postgresql16-contrib-16.3.pkg
 pkg install -y sfcgal-1.5.1_1.pkg
 pkg install -y gdal-3.9.0.pkg
 pkg install -y osm2pgsql-1.11.0_1.pkg
 pkg install -y postgresql16-server-16.3.pkg
-pkg install -y postgis34-3.4.2_3.pkg
+pkg install -y postgis34-3.4.2_4.pkg
 chown -R postgres:postgres /pgdb
 
-pkg install -y py39-yaml 
-pkg install -y py39-requests
+pkg install -y py311-yaml 
+pkg install -y py311-requests
 
 sysrc postgresql_enable="YES"
 cp -f postgresql /usr/local/etc/rc.d/postgresql
@@ -112,19 +113,16 @@ cp -r /home/_renderd/src/openstreetmap-carto/fonts/* /usr/share/fonts
 cd /root
 git clone --recursive  https://github.com/openstreetmap/mod_tile.git
 cd mod_tile
+
 mkdir mapnik-src
 cd mapnik-src
 
-curl --location --silent https://github.com/mapnik/mapnik/releases/download/v3.1.0/mapnik-v3.1.0.tar.bz2 | tar --extract --bzip2 --strip-components=1 --file=-
-curl --location --silent https://github.com/mapnik/mapnik/commit/8944e81367d2b3b91a41e24116e1813c01491e5d.patch | patch -F3 -Np1
-curl --location --silent https://github.com/mapnik/mapnik/commit/83779b7b6bdd229740b1b5e12a4a8fe27114cb7d.patch | patch -F3 -Np1
-curl --location --silent https://github.com/mapnik/mapnik/commit/7f0daee8b37d8cf6eff32529b1762ffd5104f3f3.patch | patch -F3 -Np1
-curl --location --silent https://gitlab.archlinux.org/archlinux/packaging/packages/mapnik/-/raw/f9f723222c0af50e4db747e7c4e8138dbc769f53/boost-1.83.patch | patch -F3 -Np1
+curl --location --silent https://github.com/mapnik/mapnik/releases/download/v4.0.0/mapnik-v4.0.0.tar.bz2 | tar --extract --bzip2 --strip-components=1 --file=-
 
 export JOBS=4
-export PYTHON=python3.9
+export PYTHON=python3.11
 
-sh configure \
+bash configure \
             CPP_TESTS=False \
             DEMO=False \
             FAST=True \
