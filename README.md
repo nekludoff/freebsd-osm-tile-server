@@ -1,8 +1,8 @@
 # freebsd-osm-tile-server
 
-Shell scripts to create Open Street Map tile server on freebsd 14.0
+Shell scripts to create Open Street Map tile server on freebsd 14.1
 
-You will need a fresh FreeBsd 14.0 installation with ZFS file system. I recommend a minimum 8gb ram, 8gb swap file and 100gb hdd
+You will need a fresh FreeBsd 14.1 installation with ZFS file system. I recommend a minimum 8gb ram, 8gb swap file and 100gb hdd
 
 1. Login as Root and execute follow commands <br>
 
