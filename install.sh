@@ -111,13 +111,8 @@ mkdir /usr/share/fonts
 cp -r /home/_renderd/src/openstreetmap-carto/fonts/* /usr/share/fonts
 
 cd /root
-git clone --recursive  https://github.com/openstreetmap/mod_tile.git
-cd mod_tile
-
-mkdir mapnik-src
-cd mapnik-src
-
-curl --location --silent https://github.com/mapnik/mapnik/releases/download/v4.0.0/mapnik-v4.0.0.tar.bz2 | tar --extract --bzip2 --strip-components=1 --file=-
+git clone --recursive https://github.com/mapnik/mapnik.git
+cd mapnik
 
 export JOBS=4
 export PYTHON=python3.11
@@ -134,11 +129,20 @@ bash configure \
           gmake PYTHON=${PYTHON} && \
           gmake install PYTHON=${PYTHON}
 
+cp -r -f /root/mapnik/deps/mapbox/protozero/include/protozero /usr/local/include/
+cp -r -f /root/mapnik/deps/mapbox/variant/include/mapbox /usr/local/include/
+cp -r -f /root/mapnik/deps/mapbox/polylabel/include/mapbox /usr/local/include/
+cp -r -f /root/mapnik/deps/mapbox/geometry/include/mapbox /usr/local/include/
+
+cd /root
+git clone --recursive  https://github.com/openstreetmap/mod_tile.git
+cd mod_tile
+
+
 mkdir /usr/include/iniparser
 
 ln -s /usr/include/iniparser.h /usr/include/iniparser/iniparser.h
 
-cd ..
 cmake -S . -B build -DCMAKE_LIBRARY_PATH=/usr/local/lib -DENABLE_TESTS=1
 cmake --build build
 ctest --test-dir build
