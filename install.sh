@@ -28,7 +28,6 @@ zfs set recordsize=64k zroot/pgdb/wal
 zfs set compression=off zroot/pgdb/wal
 
 pkg install -y git sudo wget npm nano
-pkg install -y proj-9.4.0_1,1.pkg
 pkg install -y llvm16 lua54 openssl
 pkg install -y mc nano bash apache24 boost-all cairo 
 pkg install -y cmake coreutils curl freetype2 glib gmake harfbuzz icu iniparser 
@@ -41,9 +40,17 @@ ln -s /usr/local/bin/python3.9 /usr/local/bin/python
 ln -s /usr/local/bin/python3.9 /usr/local/bin/python3
 
 cd /root
+
+pkg delete -y proj
+pkg delete -y sfcgal
+pkg delete -y gdal
+pkg delete -y postgresql15-client
+pkg delete -y postgresql16-client
+
 git clone https://github.com/nekludoff/freebsd-osm-tile-server.git
 cd freebsd-osm-tile-server/Postgresql-16
 
+pkg install -y proj-9.4.0_1,1.pkg
 pkg install -y postgresql16-client-16.3.pkg
 pkg install -y sfcgal-1.5.1_1.pkg
 pkg install -y gdal-3.9.0.pkg
