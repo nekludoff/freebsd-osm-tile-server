@@ -32,12 +32,12 @@ pkg install -y llvm16 lua54 openssl
 pkg install -y mc nano bash apache24 boost-all cairo 
 pkg install -y cmake coreutils curl freetype2 glib gmake harfbuzz icu iniparser 
 pkg install -y libjpeg-turbo libmemcached python39 sqlite3 tiff webp zlib-ng bzip2
-pkg install -y py39-yaml
-pkg install -y py39-requests
+pkg install -y py311-yaml
+pkg install -y py311-requests
 pkg install -y png tiff jpeg proj cairomm pkgconf libtool libltdl
-pkg install -y py39-boost-libs py39-cairo
-ln -s /usr/local/bin/python3.9 /usr/local/bin/python
-ln -s /usr/local/bin/python3.9 /usr/local/bin/python3
+pkg install -y py311-boost-libs py311-cairo
+ln -s /usr/local/bin/python3.11 /usr/local/bin/python
+ln -s /usr/local/bin/python3.11 /usr/local/bin/python3
 
 cd /root
 
@@ -51,17 +51,17 @@ git clone https://github.com/nekludoff/freebsd-osm-tile-server.git
 cd freebsd-osm-tile-server/Postgresql-16
 
 pkg install -y proj-9.4.0_1,1.pkg
-pkg install -y postgresql16-client-16.3.pkg
-pkg install -y sfcgal-1.5.1_1.pkg
-pkg install -y gdal-3.9.0.pkg
-pkg install -y py39-psycopg-c-3.1.19.pkg
-pkg install -y py39-psycopg-3.1.19.pkg
-pkg install -y py39-psycopg2-2.9.9_1.pkg
-pkg install -y py39-psycopg2cffi-2.9.0.pkg
-pkg install -y postgresql16-contrib-16.3.pkg
+pkg install -y postgresql16-client-16.4.pkg
+pkg install -y sfcgal-1.5.2.pkg
+pkg install -y gdal-3.9.1.pkg
+pkg install -y py311-psycopg-c-3.1.20.pkg
+pkg install -y py311-psycopg-3.1.20.pkg
+pkg install -y py311-psycopg2-2.9.9_1.pkg
+pkg install -y py311-psycopg2cffi-2.9.0.pkg
+pkg install -y postgresql16-contrib-16.4.pkg
 pkg install -y osm2pgsql-1.11.0_1.pkg
-pkg install -y postgresql16-server-16.3.pkg
-pkg install -y postgis34-3.4.2_4.pkg
+pkg install -y postgresql16-server-16.4.pkg
+pkg install -y postgis34-3.4.2_5.pkg
 chown -R postgres:postgres /pgdb
 
 sysrc postgresql_enable="YES"
