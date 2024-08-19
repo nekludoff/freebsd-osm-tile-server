@@ -50,7 +50,6 @@ pkg delete -y postgresql16-client
 git clone https://github.com/nekludoff/freebsd-osm-tile-server.git
 cd freebsd-osm-tile-server/Postgresql-16
 
-pkg install -y proj-9.4.0_1,1.pkg
 pkg install -y postgresql16-client-16.4.pkg
 pkg install -y sfcgal-1.5.2.pkg
 pkg install -y gdal-3.9.1.pkg
