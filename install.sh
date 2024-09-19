@@ -52,15 +52,15 @@ cd freebsd-osm-tile-server/Postgresql-16
 
 pkg install -y postgresql16-client-16.4.pkg
 pkg install -y sfcgal-1.5.2.pkg
-pkg install -y gdal-3.9.1.pkg
+pkg install -y gdal-3.9.2_1.pkg
 pkg install -y py311-psycopg-c-3.1.20.pkg
 pkg install -y py311-psycopg-3.1.20.pkg
 pkg install -y py311-psycopg2-2.9.9_1.pkg
 pkg install -y py311-psycopg2cffi-2.9.0.pkg
 pkg install -y postgresql16-contrib-16.4.pkg
-pkg install -y osm2pgsql-1.11.0_1.pkg
+pkg install -y osm2pgsql-1.11.0_2.pkg
 pkg install -y postgresql16-server-16.4.pkg
-pkg install -y postgis34-3.4.2_5.pkg
+pkg install -y postgis34-3.4.2_6.pkg
 chown -R postgres:postgres /pgdb
 
 sysrc postgresql_enable="YES"
@@ -121,7 +121,7 @@ git clone --recursive https://github.com/mapnik/mapnik.git
 cd mapnik
 
 export JOBS=4
-export PYTHON=python3.9
+export PYTHON=python3.11
 
 bash configure \
             CPP_TESTS=False \
