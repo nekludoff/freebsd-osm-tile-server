@@ -104,6 +104,7 @@ sudo -u _renderd osm2pgsql -d gis --create --slim  -G --hstore --tag-transform-s
 
 cd /home/_renderd/src/openstreetmap-carto/
 sudo -u _renderd psql -d gis -f indexes.sql
+sudo -u _renderd psql -d gis -f functions.sql
 
 cd /home/_renderd/src/openstreetmap-carto/
 mkdir data
