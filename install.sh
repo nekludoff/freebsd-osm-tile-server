@@ -32,7 +32,7 @@ pkg install -y llvm16 lua54 openssl
 pkg install -y mc nano bash apache24 boost-all cairo 
 pkg install -y cmake coreutils curl freetype2 glib gmake harfbuzz icu iniparser 
 pkg install -y libjpeg-turbo libmemcached python39 sqlite3 tiff webp zlib-ng bzip2
-pkg install -y py311-yaml
+pkg install -y py311-pyyaml
 pkg install -y py311-requests
 pkg install -y png tiff jpeg proj cairomm pkgconf libtool libltdl
 pkg install -y py311-boost-libs py311-cairo
