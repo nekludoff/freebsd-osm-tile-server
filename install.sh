@@ -6,19 +6,19 @@ echo "CFLAGS+=-O3 -funroll-loops -flto -march=native -pipe -s -DNDEBUG" >> /etc/
 echo "CXXFLAGS+=-O3 -funroll-loops -flto -march=native -pipe -s -DNDEBUG" >> /etc/make.conf
 echo "COPTFLAGS+=-O3 -funroll-loops -flto -march=native -pipe -s -DNDEBUG" >> /etc/make.conf
 
-echo "DEFAULT_VERSIONS+=llvm=16" >> /etc/make.conf
-echo "DEFAULT_VERSIONS+=php=8.3" >> /etc/make.conf
+echo "DEFAULT_VERSIONS+=llvm=19" >> /etc/make.conf
+echo "DEFAULT_VERSIONS+=php=8.4" >> /etc/make.conf
 echo "DEFAULT_VERSIONS+=ssl=openssl" >> /etc/make.conf
 
 zfs destroy -r zroot/pgdb
 zfs create -o mountpoint=/pgdb zroot/pgdb
 zfs create -o mountpoint=/pgdb/data zroot/pgdb/data
 cd /pgdb/data
-mkdir 16
+mkdir 17
 zfs set recordsize=32k zroot/pgdb/data
 zfs create -o mountpoint=/pgdb/wal zroot/pgdb/wal
 cd /pgdb/wal
-mkdir 16
+mkdir 17
 zfs set compression=lz4 zroot/pgdb
 zfs set atime=off zroot/pgdb
 zfs set xattr=sa zroot/pgdb
