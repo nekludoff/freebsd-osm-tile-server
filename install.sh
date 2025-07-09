@@ -81,6 +81,7 @@ psql -U postgres -d gis -c "CREATE EXTENSION postgis;"
 psql -U postgres -d gis -c "CREATE EXTENSION hstore;"
 psql -U postgres -d gis -c "ALTER TABLE geometry_columns OWNER TO _renderd;"
 psql -U postgres -d gis -c "ALTER TABLE spatial_ref_sys OWNER TO _renderd;"
+psql -U postgres -d gis -c "ALTER SYSTEM SET jit=off;" -c "SELECT pg_reload_conf();"
 cd /
 
 mkdir home
@@ -101,7 +102,7 @@ wget http://download.geofabrik.de/russia/central-fed-district-latest.osm.pbf
 chmod o+rx /home/_renderd
 chown -R _renderd:_renderd /home/_renderd
 
-sudo -u _renderd osm2pgsql -d gis --create --slim  -G --hstore --tag-transform-script /home/_renderd/src/openstreetmap-carto/openstreetmap-carto.lua -C 2500 --number-processes 4 -S /home/_renderd/src/openstreetmap-carto/openstreetmap-carto.style /home/_renderd/data/central-fed-district-latest.osm.pbf
+sudo -u _renderd osm2pgsql -d gis -O flex -S /home/_renderd/src/openstreetmap-carto/openstreetmap-carto-flex.lua  /home/_renderd/data/central-fed-district-latest.osm.pbf
 
 cd /home/_renderd/src/openstreetmap-carto/
 sudo -u _renderd psql -d gis -f indexes.sql
