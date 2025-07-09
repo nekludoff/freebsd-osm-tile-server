@@ -28,7 +28,7 @@ zfs set recordsize=64k zroot/pgdb/wal
 zfs set compression=off zroot/pgdb/wal
 
 pkg install -y git sudo wget npm nano
-pkg install -y llvm16 lua54 openssl
+pkg install -y llvm19 lua54 openssl
 pkg install -y mc nano bash apache24 boost-all cairo 
 pkg install -y cmake coreutils curl freetype2 glib gmake harfbuzz icu iniparser 
 pkg install -y libjpeg-turbo libmemcached python39 sqlite3 tiff webp zlib-ng bzip2
@@ -46,31 +46,32 @@ pkg delete -y sfcgal
 pkg delete -y gdal
 pkg delete -y postgresql15-client
 pkg delete -y postgresql16-client
+pkg delete -y postgresql17-client
 
 git clone https://github.com/nekludoff/freebsd-osm-tile-server.git
-cd freebsd-osm-tile-server/Postgresql-16
+cd freebsd-osm-tile-server/Postgresql-17
 
-pkg install -y postgresql16-client-16.4.pkg
-pkg install -y sfcgal-2.0.0.pkg
-pkg install -y gdal-3.9.2_2.pkg
-pkg install -y py311-psycopg-c-3.1.20.pkg
-pkg install -y py311-psycopg-3.1.20.pkg
-pkg install -y py311-psycopg2-2.9.9_1.pkg
-pkg install -y py311-psycopg2cffi-2.9.0.pkg
-pkg install -y postgresql16-contrib-16.4.pkg
-pkg install -y osm2pgsql-2.0.0.pkg
-pkg install -y postgresql16-server-16.4.pkg
-pkg install -y postgis34-3.4.3.pkg
+pkg install -y postgresql17-client-17.5.pkg
+pkg install -y sfcgal-2.1.0_1.pkg
+pkg install -y gdal-3.11.0_1.pkg
+pkg install -y py311-psycopg-c-3.2.9.pkg
+pkg install -y py311-psycopg-3.2.9.pkg
+pkg install -y py311-psycopg2-2.9.10.pkg
+pkg install -y py311-psycopg2cffi-2.9.0_1.pkg
+pkg install -y postgresql17-contrib-17.5.pkg
+pkg install -y osm2pgsql-2.1.1.pkg
+pkg install -y postgresql17-client-17.5.pkg
+pkg install -y postgis35-3.5.2_4.pkg
 chown -R postgres:postgres /pgdb
 
 sysrc postgresql_enable="YES"
 cp -f postgresql /usr/local/etc/rc.d/postgresql
 chmod 755 /usr/local/etc/rc.d/postgresql
 /usr/local/etc/rc.d/postgresql initdb
-mv -f /pgdb/data/16/pg_wal /pgdb/wal/16
-ln -s /pgdb/wal/16/pg_wal /pgdb/data/16/pg_wal
-cp -f pg_hba.conf /pgdb/data/16/pg_hba.conf
-cp -f postgresql.conf /pgdb/data/16/postgresql.conf
+mv -f /pgdb/data/17/pg_wal /pgdb/wal/17
+ln -s /pgdb/wal/17/pg_wal /pgdb/data/17/pg_wal
+cp -f pg_hba.conf /pgdb/data/17/pg_hba.conf
+cp -f postgresql.conf /pgdb/data/17/postgresql.conf
 service postgresql start
 
 su - postgres -c "createuser _renderd"
