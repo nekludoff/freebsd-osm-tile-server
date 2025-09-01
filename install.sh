@@ -51,17 +51,17 @@ pkg delete -y postgresql17-client
 git clone https://github.com/nekludoff/freebsd-osm-tile-server.git
 cd freebsd-osm-tile-server/Postgresql-17
 
-pkg install -y postgresql17-client-17.5.pkg
-pkg install -y sfcgal-2.1.0_1.pkg
-pkg install -y gdal-3.11.0_1.pkg
+pkg install -y postgresql17-client-17.6.pkg
+pkg install -y sfcgal-2.2.0.pkg
+pkg install -y gdal-3.11.3_3.pkg
 pkg install -y py311-psycopg-c-3.2.9.pkg
 pkg install -y py311-psycopg-3.2.9.pkg
 pkg install -y py311-psycopg2-2.9.10.pkg
 pkg install -y py311-psycopg2cffi-2.9.0_1.pkg
-pkg install -y postgresql17-contrib-17.5.pkg
-pkg install -y osm2pgsql-2.1.1.pkg
-pkg install -y postgresql17-client-17.5.pkg
-pkg install -y postgis35-3.5.2_4.pkg
+pkg install -y postgresql17-contrib-17.6.pkg
+pkg install -y osm2pgsql-2.1.1_2.pkg
+pkg install -y postgresql17-client-17.6.pkg
+pkg install -y postgis35-3.5.2_6.pkg
 chown -R postgres:postgres /pgdb
 
 sysrc postgresql_enable="YES"
