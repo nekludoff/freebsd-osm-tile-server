@@ -137,9 +137,10 @@ export PYTHON=python3.11
 	ICU_LIBS=/usr/local/lib \
 	WARNING_CXXFLAGS=-Wno-missing-template-arg-list-after-template-kw \
 	CUSTOM_CXXFLAGS="-march=native -pipe -DNDEBUG" \
-	OPTIMIZATION=3 && \
-	gmake PYTHON=${PYTHON} && \
-	gmake install PYTHON=${PYTHON}
+	OPTIMIZATION=3 
+
+/usr/local/bin/scons
+/usr/local/bin/scons install
 
 cp -r -f /root/mapnik/deps/mapbox/protozero/include/protozero /usr/local/include/
 cp -r -f /root/mapnik/deps/mapbox/variant/include/mapbox /usr/local/include/
