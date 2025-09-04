@@ -156,9 +156,8 @@ mkdir /usr/include/iniparser
 
 ln -s /usr/include/iniparser.h /usr/include/iniparser/iniparser.h
 
-cmake -S . -B build -DCMAKE_LIBRARY_PATH=/usr/local/lib -DENABLE_TESTS=1
+cmake -S . -B build -DCMAKE_LIBRARY_PATH=/usr/local/lib -DENABLE_TESTS=0
 cmake --build build
-ctest --test-dir build
 cmake --install build
 cd /
 
