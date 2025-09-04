@@ -31,12 +31,13 @@ pkg install -y git sudo wget npm nano
 pkg install -y llvm19 lua54 openssl
 pkg install -y mc nano bash apache24 boost-all cairo 
 pkg install -y cmake coreutils curl freetype2 glib gmake harfbuzz icu iniparser 
-pkg install -y libjpeg-turbo libmemcached python39 sqlite3 tiff webp zlib-ng bzip2
-pkg install -y py311-pyyaml
+pkg install -y libjpeg-turbo libmemcached python39 sqlite3 tiff webp zlib-ng bzip2 libavif
+pkg install -y py311-pyyaml scons-py311
 pkg install -y py311-requests
 pkg install -y png tiff jpeg proj cairomm pkgconf libtool libltdl 
 pkg install -y py311-boost-libs py311-cairo
 pkg install -y py311-pyproj
+pkg install -y py311-pyicu-2.15.2 harfbuzz-icu-10.3.0 icu-le-hb-1.2.3_4 icu-lx-76.1
 ln -s /usr/local/bin/python3.11 /usr/local/bin/python
 ln -s /usr/local/bin/python3.11 /usr/local/bin/python3
 
@@ -126,17 +127,19 @@ cd mapnik
 export JOBS=4
 export PYTHON=python3.11
 
-bash configure \
-            CPP_TESTS=False \
-            DEMO=False \
-            FAST=True \
-            HB_INCLUDES=/usr/local/include/harfbuzz \
-            HB_LIBS=/usr/local/lib \
-            ICU_INCLUDES=/usr/local/include \
-            ICU_LIBS=/usr/local/lib \
-            OPTIMIZATION=3 && \
-          gmake PYTHON=${PYTHON} && \
-          gmake install PYTHON=${PYTHON}
+/usr/local/bin/scons configure \
+	CPP_TESTS=False \
+	DEMO=False \
+	FAST=True \
+	HB_INCLUDES=/usr/local/include/harfbuzz \
+	HB_LIBS=/usr/local/lib \
+	ICU_INCLUDES=/usr/local/include \
+	ICU_LIBS=/usr/local/lib \
+	WARNING_CXXFLAGS=-Wno-missing-template-arg-list-after-template-kw \
+	CUSTOM_CXXFLAGS="-march=native -pipe -DNDEBUG" \
+	OPTIMIZATION=3 && \
+	gmake PYTHON=${PYTHON} && \
+	gmake install PYTHON=${PYTHON}
 
 cp -r -f /root/mapnik/deps/mapbox/protozero/include/protozero /usr/local/include/
 cp -r -f /root/mapnik/deps/mapbox/variant/include/mapbox /usr/local/include/
